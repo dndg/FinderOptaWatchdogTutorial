@@ -18,8 +18,8 @@ hardware:
 ## Overview
 
 In this tutorial we are going to learn how to configure a watchdog timer on the
-Finder Opta, in order to detect malfunctions such as infinite loops, deadlocks
-and timeouts, and reboot the device.
+Finder Opta, in order to reboot the device in case of malfunctions such as
+infinite loops, deadlocks and timeouts.
 
 ## Goals
 
@@ -65,9 +65,9 @@ Finder Opta.
 
 #### Configuring the watchdog
 
-As explained during this tutorial, the Finder Opta can leverage the `Watchdog`
-class provided by MbedOS to set a hardware timer that resets the device in case
-of malfunctions.
+As explained at the beginning of this tutorial, the Finder Opta can leverage
+the `Watchdog` class provided by MbedOS to set a hardware timer that resets the
+device in case of malfunctions.
 
 ```cpp
 #include <Arduino.h>
@@ -83,7 +83,7 @@ void setup()
 ```
 
 In the code above, the sketch gets the reference to the `Watchdog` instance of
-MbedOS and starts it, with a maximum timeout of 10 seconds passed as parameter.
+MbedOS and starts it, with a maximum timeout of 10 seconds.
 
 #### Refreshing thee watchdog
 

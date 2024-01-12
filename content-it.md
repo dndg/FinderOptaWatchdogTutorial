@@ -18,8 +18,8 @@ hardware:
 ## Panoramica
 
 In questo tutorial impareremo a configurare un timer watchdog su Finder Opta,
-in modo da rilevare malfunzionamenti come loop infiniti, deadlock o timeout, e
-riavviare il dispositivo.
+in modo da riavviare il dispositivo in caso di malfunzionamenti come loop
+infiniti, deadlock o timeout.
 
 ## Obiettivi
 
@@ -43,7 +43,7 @@ Editor](https://create.arduino.cc/editor).
 
 Essendo una board basata su Mbed OS, Finder Opta può sfruttare la classe
 [`Watchdog`](https://os.mbed.com/docs/mbed-os/v6.16/apis/watchdog.html) per
-settare un timer watchdog in hardware che riavvii il sistema in caso di
+impostare un timer watchdog in hardware che riavvii il sistema in caso di
 malfunzionamenti.
 
 ## Istruzioni
@@ -66,8 +66,8 @@ Opta.
 
 #### Configurare il watchdog
 
-Come specificato nel corso di questo tutorial, Finder Opta può utilizzare la
-classe `Watchdog` di MbedOS per settare un timer hardware che riavvii il
+Come specificato all'inizio di questo tutorial, Finder Opta può utilizzare la
+classe `Watchdog` di MbedOS per impostare un timer hardware che riavvii il
 dispositivo in caso di malfunzionamenti.
 
 ```cpp
@@ -83,9 +83,8 @@ void setup()
     mbed::Watchdog::get_instance().start(10000);
 ```
 
-Nel codice riportato qui sopra, lo sketch ottiene una referenza all'istanza
-`Watchdog` di MbedOS e lo avvia, con il tempo di timeout massimo di 10 secondi
-passato come parametro.
+Nel codice riportato qui sopra, lo sketch ottiene una referenza al `Watchdog`
+di MbedOS e lo avvia, con tempo di timeout massimo di 10 secondi.
 
 #### Rinfrescare il watchdog
 
