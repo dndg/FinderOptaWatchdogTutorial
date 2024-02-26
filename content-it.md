@@ -21,8 +21,9 @@ l'affidabilità di un dispositivo e riavviarlo automaticamente in caso di
 malfunzionamenti o blocchi. Si tratta di un timer che deve essere regolarmente
 resettato tramite un apposito segnale di _feed_ (in gergo, si dice che questo
 segnale "nutre" il timer watchdog). Se il timer raggiunge il proprio tempo
-limite prima di essere "nutrito", presume ci sia stato un malfunzionamento del
-sistema e riavvia il dispositivo, per ripristinarne il corretto funzionamento.
+limite prima di essere "nutrito", il watchdog presume ci sia stato un
+malfunzionamento del sistema e riavvia il dispositivo, per ripristinarne il
+corretto funzionamento.
 
 Nel caso di Finder Opta, il timer watchdog garantisce un'operatività continua e
 stabile del dispositivo. Se immaginiamo infatti di utilizzare Finder Opta in un
@@ -148,8 +149,8 @@ A questo punto iniziamo a scrivere il nostro codice di `setup()`, eseguito una
 singola volta da Finder Opta. Si noti che in questo tutorial sarà sufficiente
 scrivere solamente il codice di `setup()`, lasciando la funzione `loop()`
 vuota. Infatti, come detto in precedenza faremo scadere il timer watchdog di
-Finder Opta causandone il riavvio, pertanto il codice di `loop()` non verrà mai
-eseguito.
+Finder Opta causandone il riavvio. Pertanto, una volta terminato lo sketch, il
+codice di `loop()` non verrà mai eseguito.
 
 Il codice qui sotto imposta la velocità di trasmissione della comunicazione
 seriale a `9600` e in seguito imposta la durata del timer watchdog a 10
@@ -183,8 +184,9 @@ senza prima scrivere la parte di `setup()` mancante, il nostro programma
 raggiungerebbe la funzione `loop()`. Poichè questa funzione non chiama
 `kick()`, il watchdog interverrebbe dopo dieci secondi dall'ultima volta che è
 stato nutrito, riavviando Finder Opta. Questo ci permette anche di capire che
-se decidiamo di utilizzare un timer watchdog, sarà nostra premura chiamare la
-funzione di _feed_ con regolarità per evitare riavvii indesiderati.
+se decidiamo di utilizzare un timer watchdog all'interno di uno sketch, sarà
+nostra premura chiamare la funzione di _feed_ con regolarità per evitare
+riavvii indesiderati.
 
 Si noti che la durata del timer watchdog è espressa in millisecondi, pertanto
 impostiamo un valore di `10000`. Sul monitor seriale di Arduino IDE vedremo
@@ -332,13 +334,10 @@ In questo tutorial abbiamo discusso dell'importanza del timer watchdog su
 Finder Opta per garantirne l'affidabilità. Abbiamo imparato che il timer
 watchdog è un componente critico che monitora costantemente il dispositivo e
 interviene automaticamente in caso di malfunzionamenti o blocchi, riavviando
-Finder Opta.
-
-Attraverso una serie di istruzioni dettagliate, abbiamo mostrato come
-configurare un timer watchdog su Finder Opta utilizzando l'Arduino IDE e la
-libreria `Watchdog` di MbedOS. In seguito, abbiamo visto come "nutrire"
+Finder Opta. Attraverso una serie di istruzioni dettagliate, abbiamo mostrato
+come configurare un timer watchdog su Finder Opta utilizzando l'Arduino IDE e
+la libreria `Watchdog` di MbedOS. In seguito, abbiamo visto come "nutrire"
 periodicamente il watchdog per evitare il riavvio automatico di Finder Opta.
-
 Infine, abbiamo testato il funzionamento del timer watchdog simulando
 situazioni di malfunzionamento e verificando il corretto riavvio del
 dispositivo. Abbiamo osservato che il watchdog interviene efficacemente solo

@@ -20,8 +20,8 @@ The watchdog timer is a hardware component used to ensure the reliability of a
 device by automatically restarting it in case of malfunctions or freezes. It is
 a timer that must be regularly reset through a specific signal (in jargon, it
 is said that this signal "feeds" the watchdog timer). If the timer reaches its
-time limit before being "fed", it assumes there has been a system malfunction
-and restarts the device to restore its proper operation.
+time limit before being "fed", the watchdog assumes there has been a system
+malfunction and restarts the device to restore its proper operation.
 
 In the case of the Finder Opta, the watchdog timer ensures continuous and
 stable operation of the device. For instance, if we imagine using the Finder
@@ -143,9 +143,10 @@ In particular, we have imported the following libraries:
 
 At this point, let's start writing our `setup()` code, which is executed once
 by the Finder Opta. It should be noted that in this tutorial, it will suffice
-to write only the code for `setup()`, leaving the `loop()` function empty. As
-mentioned earlier we will let the watchdog timer of the Finder Opta expire,
-causing it to restart, so the `loop()` code will never be executed.
+to write only the code for `setup()`, leaving the `loop()` function empty. In
+fact, as mentioned earlier we will let the watchdog timer of the Finder Opta
+expire, causing it to restart. This means that once we finish our sketch the
+`loop()` code will never be executed.
 
 The code below sets the baud rate of the serial communication to `9600` and
 then configures the watchdog timer duration to 10 seconds:
@@ -177,9 +178,9 @@ As indicated by the comment, if we were to execute the code above without first
 writing the missing part of `setup()`, our program would reach the `loop()`
 function. Since this function does not call `kick()`, the watchdog would
 intervene after ten seconds from the last time it was fed, restarting Finder
-Opta. This also helps us understand that if we decide to use a watchdog timer,
-it will be our responsibility to regularly call the feed function to avoid
-unwanted restarts.
+Opta. This also helps us understand that if we decide to use a watchdog timer
+inside a sketch, it will be our responsibility to regularly call the feed
+function to avoid unwanted restarts.
 
 Note that the duration is expressed in milliseconds, so we set a value of
 `10000`. On the Arduino IDE serial monitor, we will see a message printed
@@ -326,16 +327,14 @@ In this tutorial, we discussed the importance of the watchdog timer on the
 Finder Opta to ensure its reliability. We learned that the watchdog timer is a
 critical component that constantly monitors the device and intervenes
 automatically in case of malfunctions or freezes, restarting the Finder Opta.
-
 Through a series of detailed instructions, we demonstrated how to configure a
 watchdog timer on the Finder Opta using the Arduino IDE and the `Watchdog`
 library from MbedOS. Subsequently, we saw how to periodically feed the watchdog
-to prevent the automatic restart of the Finder Opta.
-
-Finally, we tested the functionality of the watchdog timer by simulating
-malfunction situations and verifying the proper reboot of the device. We
-observed that the watchdog effectively intervenes only when the timer is not
-reset within the predetermined time limit through the feed function.
+to prevent the automatic restart of the Finder Opta. Finally, we tested the
+functionality of the watchdog timer by simulating malfunction situations and
+verifying the proper reboot of the device. We observed that the watchdog
+effectively intervenes only when the timer is not reset within the
+predetermined time limit through the feed function.
 
 In conclusion, the implementation of the watchdog timer on the Finder Opta is a
 recommended best practice for developers as it helps ensure continuous and
